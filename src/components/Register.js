@@ -66,39 +66,8 @@ const Register = () => {
         for (let i of e.target) {
             all.push(i.value)
         }
-<<<<<<< HEAD
         console.log(all.slice(0, (all.length - 1)))
         e.target.reset()
-=======
-        // console.log(all)
-        // console.log(all.slice(0, (all.length - 1)))
-
-        const backRegister = await Fb.add_data_register(db, all[0],{
-            studentNumber:all[0],
-            name:all[2],
-            password:all[1],
-            email:all[3],
-            phone:all[4],
-            faculty:all[5],
-            class:all[6]
-        })//f
-        
-        if (backRegister === 'success') {
-            document.getElementById('form-register').style.display = 'none';
-            document.getElementById('register-success').style.display = 'block';
-            document.getElementById('bar').style.animation = 'ee 3000ms linear';
-            setTimeout(()=>{
-                document.getElementById('bar').style.animation = undefined;
-                document.getElementById('form-register').style.display = 'block';
-                document.getElementById('register-success').style.display = 'none';
-                window.location = '/'
-            }, 3100)
-
-        }
-        
-       
-        
->>>>>>> v1
     }
     
     const handleNumStudent = (e) => {
