@@ -77,7 +77,7 @@ const Register = () => {
             phone:all[4],
             faculty:all[5],
             class:all[6]
-        })//f
+        })//ff
         
         if (backRegister === 'success') {
             document.getElementById('form-register').style.display = 'none';
