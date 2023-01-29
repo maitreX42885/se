@@ -81,6 +81,15 @@ const Register = () => {
         
         if (backRegister === 'success') {
             document.getElementById('form-register').style.display = 'none';
+            document.getElementById('register-success').style.display = 'block';
+            document.getElementById('bar').style.animation = 'ee 3000ms linear';
+            setTimeout(()=>{
+                document.getElementById('bar').style.animation = undefined;
+                document.getElementById('form-register').style.display = 'block';
+                document.getElementById('register-success').style.display = 'none';
+                window.location = '/'
+            }, 3100)
+
         }
         
        
@@ -109,8 +118,9 @@ const Register = () => {
             </div>
             <h2>Register</h2>
             <div className='wrapper-rr' >
-                <div className='register-success'>
+                <div className='register-success' id='register-success'>
                     <div className='wrapper-model-register'>
+                        <span id='bar'></span>
                         <div className='m-register-src'>
                             <img
                                 src={Reg_icon}
