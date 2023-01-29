@@ -29,7 +29,12 @@
     height: 100%;
     object-fit: cover;
 }
-
+#register-check {
+    text-align: left;
+    font-size: var(--fontVerySmall);
+    color: #ff0000;
+    display: none;
+}
 .r-register {
     width: 50%;
     height: 100%;
@@ -89,6 +94,20 @@
     border: transparent;
     border-right: 1px solid var(--fontColorMain);
     background-color: var(--secondaryColor);
+}
+#num_stu {
+    
+}
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(5deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
 }
 .Group-select > select {cursor: pointer;}
 .form-register-footer > input[type='submit'] {
@@ -175,4 +194,24 @@
     .login-link > a {
         font-size: var(--fontVerySmall);
     }
+}
+
+.register-success {
+    
+    border: 1px solid var(--fontColorMain);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+}
+.m-register-src {
+    margin-bottom: 5%;
+}
+.wrapper-model-register {
+    padding: 5%;
+}
+.m-register-src > img {
+    width: 50%;
+}
+.m-register-content > h5 {
+    color: var(--fontColorMain);
 }
