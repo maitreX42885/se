@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import Firebase from '../back-end/FirebaseC';
 import './Register.css';
 
 
 const Register = () => {
 
-    const [number, setNumber] = useState('')
-    const [password, setPassword] = useState('')
-    const [fullname, setFullname] = useState('')
-    const [email, setEmail] = useState('')
+
     const [tel, setTel] = useState('')
-    
-
     const [btnNightMode, setBtnNightMode] = useState('')
-
     useEffect(()=>{
         if (!localStorage.getItem('theme')) {
             localStorage.setItem('theme', 'false')
@@ -25,6 +20,7 @@ const Register = () => {
                 setBtnNightMode('true')
             }
         }
+       
     }, [])
     if (localStorage.getItem('theme')) {
         if (localStorage.getItem('theme') === 'true') {
@@ -59,11 +55,10 @@ const Register = () => {
     const onSubmit = (e) => {
         const all = []
         e.preventDefault();
-        // for (let i of e.target) {
-        //     all.push(i.value)
-        // }
-        // console.log(all.slice(0, (all.length - 1)))
-        console.log(e.target[0].value)
+        for (let i of e.target) {
+            all.push(i.value)
+        }
+        console.log(all.slice(0, (all.length - 1)))
         e.target.reset()
     }
     
@@ -115,31 +110,31 @@ const Register = () => {
                     <div className='Group-select'>
                         <select required>
                             <option value=''>คณะ</option>
-                            <option value="102">0 : บัณฑิตวิทยาลัย</option>
-                            <option value="120">1 : วิทยาลัยพลังงานทดแทนและสมาร์ตกริดเทคโนโลยี</option>
-                            <option value="121">2 : สถานการศึกษาต่อเนื่อง</option>
-                            <option value="123">3 : คณะโลจิสติกส์และดิจิทัลซัพพลายเชน</option>
-                            <option value="124">4 : วิทยาลัยเพื่อการค้นคว้าระดับรากฐาน</option>
-                            <option value="126">5 : สถานพัฒนาวิชาการด้านภาษา</option>
-                            <option value="127">6 : วิทยาลัยการจัดการระบบสุขภาพ</option>
-                            <option value="196">7 : วิทยาลัยนานาชาติ</option>
-                            <option value="203">8 : คณะเกษตรศาสตร์ ทรัพยากรธรรมชาติและสิ่งแวดล้อม</option>
-                            <option value="204">9 : คณะเภสัชศาสตร์</option>
-                            <option value="206">10 : คณะวิทยาศาสตร์</option>
-                            <option value="207">11 : คณะวิศวกรรมศาสตร์</option>
-                            <option value="208">12 : คณะศึกษาศาสตร์</option>
-                            <option value="209">13 : คณะแพทยศาสตร์</option>
-                            <option value="210">14 : คณะสาธารณสุขศาสตร์</option>
-                            <option value="211">15 : คณะวิทยาศาสตร์การแพทย์</option>
-                            <option value="212">16 : คณะพยาบาลศาสตร์</option>
-                            <option value="213">17 : คณะทันตแพทยศาสตร์</option>
-                            <option value="214">18 : คณะสหเวชศาสตร์</option>
-                            <option value="215">19 : คณะสถาปัตยกรรมศาสตร์ ศิลปะและการออกแบบ</option>
-                            <option value="216">20 : คณะนิติศาสตร์</option>
-                            <option value="217">21 : คณะมนุษยศาสตร์</option>
-                            <option value="218">22 : คณะบริหารธุรกิจ เศรษฐศาสตร์และการสื่อสาร</option>
-                            <option value="219">23 : คณะสังคมศาสตร์</option>
-                            <option value="292">24 : โรงเรียนสาธิตมหาวิทยาลัยนเรศวร</option>
+                            <option value="บัณฑิตวิทยาลัย">0 : บัณฑิตวิทยาลัย</option>
+                            <option value="วิทยาลัยพลังงานทดแทนและสมาร์ตกริดเทคโนโลยี">1 : วิทยาลัยพลังงานทดแทนและสมาร์ตกริดเทคโนโลยี</option>
+                            <option value="สถานการศึกษาต่อเนื่อง">2 : สถานการศึกษาต่อเนื่อง</option>
+                            <option value="คณะโลจิสติกส์และดิจิทัลซัพพลายเชน">3 : คณะโลจิสติกส์และดิจิทัลซัพพลายเชน</option>
+                            <option value="วิทยาลัยเพื่อการค้นคว้าระดับรากฐาน">4 : วิทยาลัยเพื่อการค้นคว้าระดับรากฐาน</option>
+                            <option value="สถานพัฒนาวิชาการด้านภาษา">5 : สถานพัฒนาวิชาการด้านภาษา</option>
+                            <option value="วิทยาลัยการจัดการระบบสุขภาพ">6 : วิทยาลัยการจัดการระบบสุขภาพ</option>
+                            <option value="วิทยาลัยนานาชาติ">7 : วิทยาลัยนานาชาติ</option>
+                            <option value="คณะเกษตรศาสตร์ ทรัพยากรธรรมชาติและสิ่งแวดล้อม">8 : คณะเกษตรศาสตร์ ทรัพยากรธรรมชาติและสิ่งแวดล้อม</option>
+                            <option value="คณะเภสัชศาสตร์">9 : คณะเภสัชศาสตร์</option>
+                            <option value="คณะวิทยาศาสตร์">10 : คณะวิทยาศาสตร์</option>
+                            <option value="คณะวิศวกรรมศาสตร์">11 : คณะวิศวกรรมศาสตร์</option>
+                            <option value="คณะศึกษาศาสตร์">12 : คณะศึกษาศาสตร์</option>
+                            <option value="คณะแพทยศาสตร์">13 : คณะแพทยศาสตร์</option>
+                            <option value="คณะสาธารณสุขศาสตร์">14 : คณะสาธารณสุขศาสตร์</option>
+                            <option value="คณะวิทยาศาสตร์การแพทย์">15 : คณะวิทยาศาสตร์การแพทย์</option>
+                            <option value="คณะพยาบาลศาสตร์">16 : คณะพยาบาลศาสตร์</option>
+                            <option value="คณะทันตแพทยศาสตร์">17 : คณะทันตแพทยศาสตร์</option>
+                            <option value="คณะสหเวชศาสตร์">18 : คณะสหเวชศาสตร์</option>
+                            <option value="คณะสถาปัตยกรรมศาสตร์ ศิลปะและการออกแบบ">19 : คณะสถาปัตยกรรมศาสตร์ ศิลปะและการออกแบบ</option>
+                            <option value="คณะนิติศาสตร์">20 : คณะนิติศาสตร์</option>
+                            <option value="คณะมนุษยศาสตร์">21 : คณะมนุษยศาสตร์</option>
+                            <option value="คณะบริหารธุรกิจ เศรษฐศาสตร์และการสื่อสาร">22 : คณะบริหารธุรกิจ เศรษฐศาสตร์และการสื่อสาร</option>
+                            <option value="คณะสังคมศาสตร์">23 : คณะสังคมศาสตร์</option>
+                            <option value="โรงเรียนสาธิตมหาวิทยาลัยนเรศวร">24 : โรงเรียนสาธิตมหาวิทยาลัยนเรศวร</option>
                         </select>
                         <select required>
                             <option value=''>ชั้นปี</option>
