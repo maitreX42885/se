@@ -7,9 +7,16 @@ import Reg_icon from '../asset/register/4315445.png'
 
 const Register = () => {
 
+    
 
+    const [numStu, setNumStu] = useState('')
     const [tel, setTel] = useState('')
+    const [fullname, setFullName] = useState('')
     const [btnNightMode, setBtnNightMode] = useState('')
+
+    const Fb = new Firebase()
+    const db = Fb.init_firebase()
+
     useEffect(()=>{
         if (!localStorage.getItem('theme')) {
             localStorage.setItem('theme', 'false')
@@ -59,29 +66,7 @@ const Register = () => {
         for (let i of e.target) {
             all.push(i.value)
         }
-        // console.log(all)
-        // console.log(all.slice(0, (all.length - 1)))
-
-        const backRegister = await Fb.add_data_register(db, all[0],{
-            studentNumber:all[0],
-            name:all[2],
-            password:all[1],
-            email:all[3],
-            phone:all[4],
-            faculty:all[5],
-            class:all[6]
-        })
-        
-        if (backRegister === 'success') {
-            document.getElementById('form-register').style.display = 'none';
-        }
-        
-
-        Fb.add_data(db, {
-            number_student:all[0],
-            password:all[1]
-        })
-
+        console.log(all.slice(0, (all.length - 1)))
         e.target.reset()
     }
     
