@@ -1,8 +1,9 @@
+import { async } from 'q';
 import React, { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import Firebase from '../back-end/FirebaseC';
 import './Register.css';
-
+import Reg_icon from '../asset/register/4315445.png'
 
 const Register = () => {
 
@@ -52,16 +53,30 @@ const Register = () => {
         e.target.value = value
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async (e) => {
         const all = []
         e.preventDefault();
         for (let i of e.target) {
             all.push(i.value)
         }
+        // console.log(all)
         console.log(all.slice(0, (all.length - 1)))
+
+        
+
+        Fb.add_data(db, {
+            number_student:all[0],
+            password:all[1]
+        })
+
         e.target.reset()
     }
     
+    const handleNumStudent = (e) => {
+        let num = e.target.value
+        num = num.substring(0, 8)
+        e.target.value = num
+    }
 
   return (
     <div className='register-container'>
@@ -79,10 +94,26 @@ const Register = () => {
             </div>
             <h2>Register</h2>
             <div className='wrapper-rr' >
+                <div className='register-success'>
+                    <div className='wrapper-model-register'>
+                        <div className='m-register-src'>
+                            <img
+                                src={Reg_icon}
+                            />
+                        </div>
+                        <div className='m-register-content'>
+                            <h5>Sign In Success</h5>
+                            <h5>Thank for register</h5>
+                        </div>
+                    </div>
+                </div>
                 <form id='form-register' className='form-register' onSubmit={onSubmit}>
+                    <p id='register-check'>รหัสนิสิตนี้มีบัญชีอยู่แล้ว</p>
                     <input 
+                        id='num_stu'
                         type='text'
                         placeholder='รหัสนิสิต*'
+                        onChange={handleNumStudent}
                         required
                     />
                     <input 
