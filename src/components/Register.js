@@ -60,8 +60,21 @@ const Register = () => {
             all.push(i.value)
         }
         // console.log(all)
-        console.log(all.slice(0, (all.length - 1)))
+        // console.log(all.slice(0, (all.length - 1)))
 
+        const backRegister = await Fb.add_data_register(db, all[0],{
+            studentNumber:all[0],
+            name:all[2],
+            password:all[1],
+            email:all[3],
+            phone:all[4],
+            faculty:all[5],
+            class:all[6]
+        })
+        
+        if (backRegister === 'success') {
+            document.getElementById('form-register').style.display = 'none';
+        }
         
 
         Fb.add_data(db, {
@@ -94,8 +107,9 @@ const Register = () => {
             </div>
             <h2>Register</h2>
             <div className='wrapper-rr' >
-                <div className='register-success'>
+                <div className='register-success' id='register-success'>
                     <div className='wrapper-model-register'>
+                        <span id='bar'></span>
                         <div className='m-register-src'>
                             <img
                                 src={Reg_icon}
