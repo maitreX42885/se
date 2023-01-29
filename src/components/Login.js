@@ -7,6 +7,7 @@ import { FiMoon, FiSun } from "react-icons/fi";
 const Login = () => {
 
     const [btnNightMode, setBtnNightMode] = useState('')
+    
     useEffect(()=>{
         if (!localStorage.getItem('theme')) {
             localStorage.setItem('theme', 'false')
@@ -92,5 +93,6 @@ const Login = () => {
     </div>
   )
 }
-
+// f
+// as
 export default Login;

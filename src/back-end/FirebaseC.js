@@ -4,13 +4,13 @@ import { getFirestore, collection, addDoc} from "firebase/firestore";
 export default class Firebase {
     constructor() {
         this.config = {
-            apiKey: "AIzaSyAajg7k3hb5kxcJJqTKGvDtj8ad5X681pg",
-            authDomain: "react-lesson-01.firebaseapp.com",
-            projectId: "react-lesson-01",
-            storageBucket: "react-lesson-01.appspot.com",
-            messagingSenderId: "1042803131009",
-            appId: "1:1042803131009:web:6535c66fbaf24f6ab4c380",
-            measurementId: "G-6EBEWZRY3B"
+            apiKey: "AIzaSyCxguflMT7KhYqkAk8H0fMJ_zW-amtMLdw",
+            authDomain: "reac-se.firebaseapp.com",
+            projectId: "reac-se",
+            storageBucket: "reac-se.appspot.com",
+            messagingSenderId: "207195802626",
+            appId: "1:207195802626:web:e816d174a50a98a228eb1b",
+            measurementId: "G-2L3Z24SP8K"
         }
     }
 

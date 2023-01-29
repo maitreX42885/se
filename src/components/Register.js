@@ -5,9 +5,15 @@ import './Register.css';
 
 const Register = () => {
 
-
+    const [number, setNumber] = useState('')
+    const [password, setPassword] = useState('')
+    const [fullname, setFullname] = useState('')
+    const [email, setEmail] = useState('')
     const [tel, setTel] = useState('')
+    
+
     const [btnNightMode, setBtnNightMode] = useState('')
+
     useEffect(()=>{
         if (!localStorage.getItem('theme')) {
             localStorage.setItem('theme', 'false')
@@ -53,10 +59,11 @@ const Register = () => {
     const onSubmit = (e) => {
         const all = []
         e.preventDefault();
-        for (let i of e.target) {
-            all.push(i.value)
-        }
-        console.log(all.slice(0, (all.length - 1)))
+        // for (let i of e.target) {
+        //     all.push(i.value)
+        // }
+        // console.log(all.slice(0, (all.length - 1)))
+        console.log(e.target[0].value)
         e.target.reset()
     }
     
