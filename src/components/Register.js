@@ -3,15 +3,15 @@ import React, { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import Firebase from '../back-end/FirebaseC';
 import './Register.css';
-import Reg_icon from '../asset/register/4315445.png'
-
+import CorrentIcon from '../asset/register/4315445.png'
+import IncorrectIcon from '../asset/register/2550273.png'
 const Register = () => {
 
     
 
-    const [numStu, setNumStu] = useState('')
-    const [tel, setTel] = useState('')
-    const [fullname, setFullName] = useState('')
+    // const [numStu, setNumStu] = useState('')
+    // const [tel, setTel] = useState('')
+    // const [fullname, setFullName] = useState('')
     const [btnNightMode, setBtnNightMode] = useState('')
 
     const Fb = new Firebase()
@@ -78,18 +78,44 @@ const Register = () => {
             faculty:all[5],
             class:all[6]
         })//ff
-        
+
+        const subRegContent1 = document.getElementById('sub-reg-content-1');
+        const subRegContent2 = document.getElementById('sub-reg-content-2');
+        const bar = document.getElementById('bar');
+        const imgModel = document.getElementById('img-model-register');
+        const formReg = document.getElementById('form-register');
+        const regSucess =document.getElementById('register-success');
+
         if (backRegister === 'success') {
-            document.getElementById('form-register').style.display = 'none';
-            document.getElementById('register-success').style.display = 'block';
-            document.getElementById('bar').style.animation = 'ee 3000ms linear';
+            subRegContent1.innerHTML = 'Sign Up Success'
+            subRegContent2.innerHTML = 'Thank for register'
+            imgModel.src = `${CorrentIcon}`;
+            formReg.style.display = 'none';
+            regSucess.style.display = 'block';
+            bar.style.backgroundColor = '#1d6c0d';
+            bar.style.animation = 'ee 3000ms linear';
             setTimeout(()=>{
-                document.getElementById('bar').style.animation = undefined;
-                document.getElementById('form-register').style.display = 'block';
-                document.getElementById('register-success').style.display = 'none';
+                bar.style.animation = undefined;
+                formReg.style.display = 'block';
+                regSucess.style.display = 'none';
                 window.location = '/'
             }, 3100)
 
+        }else {
+            subRegContent1.innerHTML = 'Sign Up Fail'
+            subRegContent2.innerHTML = 'Please register again'
+            imgModel.src = `${IncorrectIcon}`;
+            formReg.style.display = 'none';
+            regSucess.style.display = 'block';
+            bar.style.backgroundColor = '#fe0000';
+            bar.style.animation = 'ee 3000ms linear';
+            setTimeout(()=>{
+                imgModel.src = ``;
+                bar.style.animation = undefined;
+                formReg.style.display = 'block';
+                regSucess.style.display = 'none';
+                
+            }, 3100)
         }
         
        
@@ -123,12 +149,14 @@ const Register = () => {
                         <span id='bar'></span>
                         <div className='m-register-src'>
                             <img
-                                src={Reg_icon}
+                                id='img-model-register'
+                                src={''}
+                                alt='logo-model'
                             />
                         </div>
                         <div className='m-register-content'>
-                            <h5>Sign In Success</h5>
-                            <h5>Thank for register</h5>
+                            <h5 id='sub-reg-content-1'></h5>
+                            <h5 id='sub-reg-content-2'></h5>
                         </div>
                     </div>
                 </div>

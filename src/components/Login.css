@@ -1,8 +1,7 @@
-
 .login-container {
     border: 5px solid #efefef;
     border-radius: 15px;
-    
+
     overflow: hidden;
     position: absolute;
     left: 50%;
@@ -13,18 +12,330 @@
     justify-content: center;
     width: auto;
     height: 500px;
+    min-height: 500px;
     min-width: 500px;
 }
+
+/* loading */
+
+.loading {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); 
+    z-index: 999;
+}
+
+.loading-dot {
+    border-radius: 100%;
+    height: 10px;
+    width: 10px;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+        40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    -webkit-animation: load 3s infinite linear;
+    -moz-animation: load 3s infinite linear;
+    -o-animation: load 3s infinite linear;
+    animation: load 3s infinite linear;
+}
+
+
+@-webkit-keyframes load {
+    0% {
+        -webkit-transform: translate(0px, 0px), rotate(0deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    25% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    50% {
+        box-shadow: 0px -40px 0px 0px #ffffff, 0px 40px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    70% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+    }
+
+    75% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    80% {
+        -webkit-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    85% {
+        -webkit-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    90% {
+        -webkit-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    95% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+}
+
+@-moz-keyframes load {
+    0% {
+        -moz-transform: translate(0px, 0px), rotate(0deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    25% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    50% {
+        box-shadow: 0px -40px 0px 0px #ffffff, 0px 40px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    70% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+    }
+
+    75% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    80% {
+        -moz-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    85% {
+        -moz-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    90% {
+        -moz-transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    95% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    100% {
+        -moz-transform: rotate(360deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+}
+
+@keyframes load {
+    0% {
+        transform: translate(0px, 0px), rotate(0deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    25% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    50% {
+        box-shadow: 0px -40px 0px 0px #ffffff, 0px 40px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    70% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+    }
+
+    75% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    80% {
+        transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    85% {
+        transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    90% {
+        transform: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    95% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+}
+
+@-o-keyframes load {
+    0% {
+        -o-transforms: translate(0px, 0px), rotate(0deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    25% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    50% {
+        box-shadow: 0px -40px 0px 0px #ffffff, 0px 40px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff,
+            -40px -40px 0px 0px #ffffff, 40px 40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff;
+    }
+
+    70% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+    }
+
+    75% {
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    80% {
+        -o-transforms: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    85% {
+        -o-transforms: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 40px;
+        width: 40px;
+    }
+
+    90% {
+        -o-transforms: translate(0px, 0px) rotate(360deg);
+        box-shadow: 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff,
+            0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff, 0px 0px 0px 0px #ffffff;
+        background-color: #ffffff;
+        height: 10px;
+        width: 10px;
+    }
+
+    95% {
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+    100% {
+        -o-transforms: rotate(360deg);
+        box-shadow: 0px 40px 0px 0px #ffffff, 0px -40px 0px 0px #ffffff, 40px 0px 0px 0px #ffffff, -40px 0px 0px 0px #ffffff,
+            40px 40px 0px 0px #ffffff, -40px -40px 0px 0px #ffffff, 40px -40px 0px 0px #ffffff, -40px 40px 0px 0px #ffffff;
+    }
+
+}
+
+/* loading */
 
 .l-login {
     width: 50%;
     height: 100%;
 }
+
 .wrapper-l {
     width: 100%;
     height: 100%;
 }
-.wrapper-l > img {
+
+.wrapper-l>img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -35,6 +346,7 @@
     height: 100%;
     position: relative;
 }
+
 .register-link {
     width: 100%;
     text-align: right;
@@ -43,58 +355,68 @@
     color: var(--fontColorMain);
     font-size: var(--fontVeryTinSmall);
 }
-.register-link > a {
+
+.register-link>a {
     font-size: var(--fontVeryTinSmall);
 }
+
 .r-login > h2 {
     color: var(--fontColorMain);
-    margin-top: 15%;
+    margin-top: 2.5rem;
     font-size: 2rem;
 }
+
 .subtitle {
     font-size: var(--fontVerySmall);
     color: var(--fontColorMain);
 }
+
 .wrapper-r {
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%;
     transform: translateX(-50%);
     width: 70%;
 }
-#form-login{
+
+#form-login {
+    position: relative;
     margin-top: 30px;
     display: flex;
     flex-direction: column;
     border-top: 1px solid var(--fontColorMain);
-    
-    
+
+
 }
-#form-login > input[type='text'],
-#form-login > input[type='password'] {
+
+#form-login>input[type='text'],
+#form-login>input[type='password'] {
     margin-bottom: 15px;
     width: 100%;
     background-color: var(--secondaryColor);
-    height: 40px;
+    height: 2.5rem;
     padding-left: 5%;
     border-radius: 5px;
-    
+
     border: transparent;
     font-size: .9rem;
     outline: none;
-   
+
 }
-#form-login > input[type='text'] {
+
+#num-login {
     position: relative;
-    margin-top: 30px;
+    /* margin-top: 30px; */
 }
+
 #hr-login {
     content: ' ';
     background-color: red;
     width: 10%;
     height: 10%;
 }
-.form-login-footer > input[type='submit'] {
+
+.form-login-footer>input[type='submit'] {
     margin-top: 20px;
     width: 100%;
     height: 40px;
@@ -104,16 +426,52 @@
     border: transparent;
     transition: background-color 150ms ease-in-out;
 }
-.form-login-footer > input[type='submit']:hover {
+
+.form-login-footer>input[type='submit']:hover {
     cursor: pointer;
     background-color: #ba4646;
 }
+
+#num-incorrect {
+    margin-top: 30px;
+}
+
+#password-incorrect,
+#num-incorrect {
+    visibility: hidden;
+    text-align: left;
+    padding-left: 5px;
+    font-size: var(--fontVerySmall);
+    color: #ff0000;
+}
+
+#btnTogglePassword {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    font-size: 1.2rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    width: 20%;
+    position: absolute;
+    top: 7.1875rem;
+    height: 2.5rem;
+    right: 0;
+}
+
+#btnTogglePassword:hover {
+    cursor: pointer;
+}
+
 .nightMode {
     position: absolute;
     bottom: 2%;
     right: 2%;
 }
-.nightMode > button {
+
+.nightMode>button {
     border-radius: 100%;
     border: transparent;
     width: 30px;
@@ -125,62 +483,86 @@
     color: var(--fontColorMain);
     background-color: transparent;
 }
-.nightMode > button:hover {
+
+.nightMode>button:hover {
     cursor: pointer;
     filter: brightness(80%);
 }
+
 @keyframes spinn {
-    0% {transform: rotate(0deg);}
-    100% {transform: rotate(360deg);}
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
+
 @keyframes spinn2 {
-    0% {transform: rotate(360deg);}
-    100% {transform: rotate(0deg);}
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
+
 @media screen and (max-width:480px) {
     .l-login {
         display: none;
     }
+
     .r-login {
         width: 100%;
     }
+
     .login-container {
         min-width: 300px;
     }
+
     .register-link {
         font-size: var(--fontVerySmall);
     }
-    .register-link > a {
+
+    .register-link>a {
         font-size: var(--fontVerySmall);
     }
 }
+
 @media screen and (orientation: landscape) and (max-height:480px) {
     html {
-       /* Rotate the content container */
-       transform: rotate(-90deg);
-       transform-origin: left top;
-       /* Set content width to viewport height */
-       width: 100vh;
-       /* Set content height to viewport width */
-       height: 100vw;
-       overflow-x: hidden;
-       position: absolute;
-       top: 100%;
-       left: 0;
+        /* Rotate the content container */
+        transform: rotate(-90deg);
+        transform-origin: left top;
+        /* Set content width to viewport height */
+        width: 100vh;
+        /* Set content height to viewport width */
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
     }
+
     .l-login {
         display: none;
     }
+
     .r-login {
         width: 100%;
     }
+
     .login-container {
         min-width: 300px;
     }
+
     .register-link {
         font-size: var(--fontVerySmall);
     }
-    .register-link > a {
+
+    .register-link>a {
         font-size: var(--fontVerySmall);
     }
 }
