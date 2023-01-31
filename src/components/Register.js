@@ -1,14 +1,15 @@
-import { async } from 'q';
 import React, { useEffect, useState } from 'react';
 import { FiMoon, FiSun } from 'react-icons/fi';
 import Firebase from '../back-end/FirebaseC';
 import './Register.css';
 import CorrentIcon from '../asset/register/4315445.png'
 import IncorrectIcon from '../asset/register/2550273.png'
+
+
 const Register = () => {
 
     
-
+    
     // const [numStu, setNumStu] = useState('')
     // const [tel, setTel] = useState('')
     // const [fullname, setFullName] = useState('')
@@ -61,6 +62,7 @@ const Register = () => {
     }
 
     const onSubmit = async (e) => {
+        
         const all = []
         e.preventDefault();
         for (let i of e.target) {
@@ -99,6 +101,8 @@ const Register = () => {
                 formReg.style.display = 'block';
                 regSucess.style.display = 'none';
                 window.location = '/'
+
+               
             }, 3100)
 
         }else {

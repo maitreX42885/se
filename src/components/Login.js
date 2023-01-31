@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './Login.css'
 // import '../index.css'
 import { FiEye, FiMoon, FiSun, FiEyeOff } from "react-icons/fi";
 import Firebase from '../back-end/FirebaseC';
-
+import { AuthContext } from './Auth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
+    const navigate = useNavigate();
     const [togglepassword, setTogglePassword] = useState(false)
     const [btnNightMode, setBtnNightMode] = useState('')
     
     const Fb = new Firebase()
     const db = Fb.init_firebase()
 
+    const {currentUser, currentUserAction} = useContext(AuthContext)
 
     useEffect(()=>{
         if (!localStorage.getItem('theme')) {
@@ -26,7 +28,6 @@ const Login = () => {
             }
         }
         
-
 
     }, [])
     if (localStorage.getItem('theme')) {
@@ -74,13 +75,21 @@ const Login = () => {
     }
 
     const onSubmit = (e) => {
+        
         e.preventDefault();
+
+        // console.log("1 : ", currentUser)
+        
+        // console.log("2 : ", currentUser)
+
         const all = []
         for (let i of e.target) {
+            currentUserAction.setSession(true)
             all.push(i.value)
         }
-        // Fb.login(db, [all[0], all[1]])
+        
         Fb.login(db, [all[0], all[1]])
+        navigate('/dashboard')
     }
     
   return (
