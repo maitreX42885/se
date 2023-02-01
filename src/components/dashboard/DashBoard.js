@@ -1,16 +1,68 @@
-import React, { useContext } from 'react'
+import React, { startTransition, Suspense, useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../Auth';
 import './Dashboard.css'
-import { BiBox, BiHomeAlt, BiUser, BiUserPlus } from "react-icons/bi";
-import { FiArrowRight, FiBox } from "react-icons/fi";
+import { BiArrowBack, BiBox, BiHomeAlt, BiUser, BiUserPlus } from "react-icons/bi";
+import { FiArrowRight, FiBox, FiMoon, FiSun } from "react-icons/fi";
+import { FaCoins, IconName } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import Loading from '../Loading'
+
+const DashboardUser = React.lazy(()=> import('./DashboardUser'));
+const DashboardMain = React.lazy(()=> import('./DashboardMain'));
+const DashboardTool = React.lazy(()=> import('./DashboardTool'));
+const DashboardMoney = React.lazy(()=> import('./DashboardMoney'));
+const DashboardAddUser = React.lazy(()=> import('./DashboardAddUser'));
+const DashboardAddTool = React.lazy(()=> import('./DashboardAddTool'));
+
+
+
 function DashBoard() {
 
-    const {currentUser, currentUserAction} = useContext(AuthContext)
 
-    // console.log(currentUser)
+	const [btnNightMode, setBtnNightMode] = useState('')
+	const navigate = useNavigate();
+    const {currentUser, currentUserAction} = useContext(AuthContext)
+    const [pageCursor, setPageCursor] = useState(0)
+
+
+	useEffect(()=>{
+        if (!localStorage.getItem('theme')) {
+            localStorage.setItem('theme', 'false')
+            setBtnNightMode('false')
+        }else {
+            if (localStorage.getItem('theme') === 'true') {
+                setBtnNightMode('false')
+            }else {
+                setBtnNightMode('true')
+            }
+        }
+        
+    }, [])
+    if (localStorage.getItem('theme')) {
+        if (localStorage.getItem('theme') === 'true') {
+            document.documentElement.style.setProperty('--fontColorMain', '#fff');
+            document.documentElement.style.setProperty('--primaryColor', '#000');       
+        }else {
+            document.documentElement.style.setProperty('--fontColorMain', '#000');
+            document.documentElement.style.setProperty('--primaryColor', '#fff');
+        }
+    }
+    const handleNightMode = ()=> {
+        localStorage.setItem('theme', btnNightMode)
+        if (btnNightMode === 'true') {// black
+            document.getElementById('btnNightMode').style.animation = 'spinn 400ms'
+            localStorage.setItem('theme', 'true')
+            setBtnNightMode('false')
+        }else { // white
+            document.getElementById('btnNightMode').style.animation = 'spinn2 400ms'
+            localStorage.setItem('theme', 'false')
+            setBtnNightMode('true')
+        }
+    }
 
   return (
     <div>
+      <button id='btnNightMode' onClick={handleNightMode}>{(localStorage.getItem('theme') === 'true') ? (<FiMoon />) : (<FiSun />)}</button>
         <div className='dashboard-container'>
           <div className='dashboard-aside'>
             <div className='dashboard-aside-wrapper'>
@@ -19,74 +71,34 @@ function DashBoard() {
               </div>
               <div className='dashboard-aside-items'>
                 <h4>Quick Acess</h4>
-                <div><BiHomeAlt/>| หน้าหลัก</div>
-                <div><BiUser/>| สมาชิก</div>
-                <div><BiBox/>| อุปกรณ์</div>
-                <div>4</div>
-                <div>5</div>
+                <div onClick={()=>setPageCursor(5)}><BiHomeAlt/>| หน้าหลัก</div>
+                <div onClick={()=>setPageCursor(1)}><BiUser/>| สมาชิก</div>
+                <div onClick={()=>setPageCursor(2)}><BiBox/>| อุปกรณ์</div>
+                <div onClick={()=>setPageCursor(3)}><FaCoins/>| การเงิน</div>
+                <div onClick={()=>setPageCursor(0)}><BiArrowBack/>| กลับ</div>
               </div>
               <div className='dashboard-aside-items'>
-                <h4>Settings</h4>
-                <div><BiUserPlus/>| เพื่มสมาชิก</div>
-                <div><FiBox/>| เพื่มอุปกรณ์</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
+                <h4>Other</h4>
+                <div onClick={()=>setPageCursor(6)}><BiUserPlus/>| เพื่มสมาชิก</div>
+                <div onClick={()=>setPageCursor(7)}><FiBox/>| เพื่มอุปกรณ์</div>
+                <div onClick={()=>setPageCursor(8)}>3</div>
+                <div onClick={()=>setPageCursor(9)}>4</div>
+                <div onClick={()=>setPageCursor(10)}>5</div>
               </div>
             </div>
           </div>
-          <div className='dashboard-content'>
-            <div className='dashboard-content-header'>
-              <h2>Welcome</h2>
-              <p>ชมรมพัฒนาชนบท</p>
-            </div>
-            <div className='dashboard-content-middle'>
-              <img 
-                src='https://images.unsplash.com/photo-1478116285712-2d465a7f29b5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80'
-                alt='logo-dashboard'
-              />
-              <h4>Just Text</h4>
-            </div>
-            <div className='dashboard-content-footer'>
-              <div className='dashboard-content-footer-left'>
-                  <div className='dashboard-content-footer-left-head'>
-                    <h3>อุปกรณ์</h3>
-                    <div>
-                      <button type='button'>See all</button>
-                      <FiArrowRight/>
-                    </div>
-                  </div>
-                  <div className='dashboard-content-footer-left-content'>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                  
-                    
-                  </div>
-              </div>
-              <div className='dashboard-content-footer-right'>
-                  <div className='dashboard-content-footer-right-head'>
-                    <h3>สมาชิก</h3>
-                      <div>
-                        <button type='button'>See all</button>
-                        <FiArrowRight/>
-                      </div>
-                  </div>
-                  <div className='dashboard-content-footer-right-content'>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                  </div>
-              </div>
-            </div>
+          <div className='dashboard-content' id='dashboard-content'>
+		  	
+		  	<Suspense fallback={<Loading />}>
+			  { (pageCursor===1) ? (<DashboardUser />)
+			  : (pageCursor===0) ? (<DashboardMain />) 
+			  : (pageCursor===2) ? (<DashboardTool />) 
+			  : (pageCursor===3) ? (<DashboardMoney />) 
+			  : (pageCursor===5) ? (navigate('/')) 
+			  : (pageCursor===6) ? (<DashboardAddUser />) 
+			  : (pageCursor===7) ? (<DashboardAddTool />)
+			  : ''}
+			</Suspense>
           </div>
         </div>
     </div>

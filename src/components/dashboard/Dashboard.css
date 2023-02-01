@@ -13,9 +13,32 @@
 
 /* reuse */
 
+/* night */
+
+#btnNightMode {
+    position: absolute;
+    z-index: 999;
+    right: 5%;
+    bottom: 8%;
+    width: 1.875rem;
+    height: 1.875rem;
+    color: var(--fontColorMain);
+    background-color: transparent;
+    font-size: 1.5rem;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: transparent;
+}
+#btnNightMode:hover {
+    cursor: pointer;
+}
+/* night */
+
 /* dashboard-container */
 .dashboard-container {
-    
+    color: var(--fontColorMain);
     position: absolute;
     left: 50%;
     top: 50%;
@@ -59,7 +82,7 @@
 .dashboard-aside-header > h2 {
     text-align: center;
     width: 100%;
-    
+    color: var(--fontColorMain);
 }
 .dashboard-aside-items {
     width: 100%;
@@ -67,6 +90,7 @@
 .dashboard-aside-items > h4 {
     text-align: left;
     margin: 10% 0;
+    color: var(--fontColorMain);
 }
 .dashboard-aside-items > div {
     justify-content: left;
@@ -98,8 +122,16 @@
 /* dashboard-aside */
 
 /* dashboard-content */
-
+.wrapper-dashboard-main {
+    
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
 .dashboard-content {
+    position: relative;
     flex-direction: column;
     border: 1px solid blue;
     height: 100%;
@@ -116,11 +148,11 @@
     width: 100%;
     text-align: left;
     padding-left: 5%;
-    color: var(--fontColorMain);
+   
 }
 .dashboard-content-header > p {
     font-size: var(--fontVerySmall);
-    color: var(--fontColorMain);
+    
 }
 .dashboard-content-middle {
     text-align: left;
@@ -145,6 +177,7 @@
     object-fit: cover;
 }
 .dashboard-content-footer {
+    
     display: flex;
     flex-direction: row;
     height: 60%;
@@ -152,24 +185,27 @@
 }
 .dashboard-content-footer-left {
     padding-right: 5%;
+    
     width: 50%;
     height: 100%;
     padding-top: 3%;
 }
 .dashboard-content-footer-left-head {
     flex-direction: row;
-   
+    
     justify-content: space-between;
     align-items: center;
 }
 .dashboard-content-footer-left-head > div {
     display: flex;
+    
     justify-content: center;
     align-items: center;
 }
 .dashboard-content-footer-left-head > div > button {
     background-color: transparent;
     border: transparent;
+    color: var(--fontColorMain);
     height: 100%;
 }
 .dashboard-content-footer-left-head > div > button:hover,
@@ -178,6 +214,7 @@
 } 
 
 .dashboard-content-footer-left-content {
+    
     overflow: hidden;
     padding: 5% 5%;
     display: grid;
@@ -200,6 +237,7 @@
 
 
 .dashboard-content-footer-right-head {
+
     padding: 0;
     display: flex;
     flex-direction: row;
@@ -210,6 +248,7 @@
     background-color: transparent;
     border: transparent;
     height: 100%;
+    color: var(--fontColorMain);
 }
 
 .dashboard-content-footer-right-head > div {
@@ -220,7 +259,7 @@
 
 
 .dashboard-content-footer-right {
-    
+    color: var(--fontColorMain);
     width: 50%;
     height: 100%;
     padding-top: 3%;
@@ -228,7 +267,7 @@
 }
 .dashboard-content-footer-right-content {
     
-   
+    
     margin-top: 5%;
     display: flex;
     flex-direction: column;

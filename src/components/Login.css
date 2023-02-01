@@ -471,11 +471,10 @@
     right: 2%;
 }
 
-.nightMode>button {
+.nightMode > button {
     border-radius: 100%;
-    border: transparent;
-    width: 30px;
-    height: 30px;
+    width: 1.875rem;
+    height: 1.875rem;
     font-size: 1.5rem;
     display: flex;
     justify-content: center;

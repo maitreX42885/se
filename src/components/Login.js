@@ -6,11 +6,13 @@ import Firebase from '../back-end/FirebaseC';
 import { AuthContext } from './Auth';
 import { useNavigate } from 'react-router-dom';
 
+
 const Login = () => {
-    const navigate = useNavigate();
+    
     const [togglepassword, setTogglePassword] = useState(false)
     const [btnNightMode, setBtnNightMode] = useState('')
     
+    const navigate = useNavigate();
     const Fb = new Firebase()
     const db = Fb.init_firebase()
 
@@ -28,7 +30,6 @@ const Login = () => {
             }
         }
         
-
     }, [])
     if (localStorage.getItem('theme')) {
         if (localStorage.getItem('theme') === 'true') {
@@ -51,6 +52,7 @@ const Login = () => {
             setBtnNightMode('true')
         }
     }
+
     const handleTogglePassword = () => {
         if (togglepassword) {
             document.getElementById('password-login').type = 'password'
