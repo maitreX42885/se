@@ -51,7 +51,8 @@
 }
 
 #form-DBAT > textarea {
-    width: 200px;
+    width: 60%;
+    height: 25%;
 }
 #form-DBAT-footer {
     width: 100%;    
