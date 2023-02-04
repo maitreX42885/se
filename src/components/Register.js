@@ -78,7 +78,8 @@ const Register = () => {
             email:all[3],
             phone:all[4],
             faculty:all[5],
-            class:all[6]
+            class:all[6],
+            permission:"ผู้ใช้"
         })//ff
 
         const subRegContent1 = document.getElementById('sub-reg-content-1');
@@ -187,11 +188,10 @@ const Register = () => {
                         placeholder='Email*'
                         required
                     />
-                    <input 
-                        type='tel'
+                    <input
+                        type='text'
+                        placeholder='เบอร์'
                         onChange={handleTel}
-                        
-                        placeholder='Phone*'
                         required
                     />
                     

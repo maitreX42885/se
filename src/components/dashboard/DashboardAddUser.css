@@ -1,0 +1,123 @@
+.d-add-user {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+.d-add-user-header {
+    height: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.d-add-user-header > img {
+    width: 5%;
+    color: var(--fontColorMain);
+}
+.d-add-user-content {
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.wrapper-DAUC {
+    display: flex;
+    flex-direction: column;
+    padding-top: 5%;
+    width: 50%;
+    height: 100%;
+}
+#form-DAUC {
+    padding-top: 10%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    border: 1px solid var(--fontColorMain);
+    margin-bottom: 5%;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+/* #register-check {
+    display: block;
+} */
+#form-DAUC > input, #form-DAUC > div > select{
+    outline: none;
+    width: 50%;
+}
+#form-DAUC > input {
+    width: 50%;
+    height: 10%;
+    margin-bottom: 2%;
+    padding-left: 1%;
+    font-size: 14px;
+    border: transparent;
+    background-color: var(--secondaryColor);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+}
+#form-DAUC > input:focus {
+    border-bottom: 1px solid var(--fontColorMain);
+}
+#form-DAUC > div {
+    height: 10%;
+}
+#form-DAUC > div > select {
+    width: 25%;
+    /* height: 100%; */
+    height: 60%;
+    border: transparent;
+    border-right: 1px solid #000;
+    background-color: var(--secondaryColor);
+}
+.DAU-footer {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 1%;
+    width: 100%;
+    height: 20%;
+    
+}
+.DAU-footer > button:nth-child(2) {
+    background-color: var(--colorInfo);
+}
+.DAU-footer > button {
+    
+    width: 15%;
+    margin-bottom: 2%;
+    height: 100%;
+    color: #fff;
+    background-color: var(--colorSuccess);
+    border: transparent;
+    border-radius: 5px;
+    
+}
+.DAU-footer >  button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+/* #num-add-user {
+    animation: shakeee 300ms ease-in-out;
+} */
+
+@keyframes shakeee {
+    0% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(20%);
+    }
+    75% {
+        transform: translateX(-20%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}

@@ -1,0 +1,109 @@
+.PopupFormEditUser-container {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+    /* top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); */
+    background-color: rgb(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.PFEU-Form {
+    color: var(--fontColorMain);
+    border: 1px solid #fff;
+    width: 40%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--primaryColor);
+    border-radius: 5px;
+    animation: PFEU_Appear 200ms ease-in-out;
+}
+@keyframes PFEU_Appear {
+    0% {
+        border-radius: 100%;
+        opacity: 0;
+    }
+    100% {
+        border-radius: 5px;
+        opacity: 1;
+    }
+}
+.PFEU-header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    justify-content: end;
+    
+}
+.PFEU-header > button {
+    color: var(--fontColorMain);
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: transparent;
+    
+}
+.PFEU-header > button:hover {
+    cursor: pointer;
+
+}
+
+.PFEU-form-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+}
+.PFEU-content {
+    height: 90%;
+}
+.PFEU-content > form {
+    height: 100%;
+}
+.PFEU-form-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content:first baseline;
+    align-items:center;
+    height: 70%;
+
+}
+.PFEU-form-content > input, select {
+    width: 70%;
+    outline: none;
+    margin-top: 2%;
+    height: 10%;
+    padding-left: 2%;
+    font-size: 14px;
+    border: 0;
+    border-radius: 2px;
+    background-color: var(--secondaryColor);
+}
+
+.PFEU-form-footer {
+    height: 20%;
+}
+.PFEU-form-footer > button {
+    border-radius: 5px;
+    width: 15%;
+    height: 30px;
+    border: transparent;
+    background-color: var(--colorSuccess);
+    color: #fff;
+}
+.PFEU-form-footer > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+    
+}

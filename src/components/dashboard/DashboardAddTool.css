@@ -1,0 +1,79 @@
+.DBAT-container {
+    width: 100%;
+    height: 100%;
+}
+
+.DBAT-header {
+    height: 10%;
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding-left: 5%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+#tool-check {
+    margin-top: 10%;
+    visibility: hidden;
+    text-align: center;
+    font-size: var(--fontVerySmall);
+    color: #ff0000;
+    display: block;
+}
+.DBAT-content {
+    width: 100%;
+    height: 90%;
+    padding-top: 5%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+}
+#form-DBAT {
+    border: 1px solid var(--fontColorMain);
+    width: 40%;
+    height: 80%;
+}
+#form-DBAT > input, #form-DBAT > textarea {
+    resize: none;
+    width: 60%;
+    margin-bottom: 5%;
+    height: 10%;
+    font-size: 14px;
+    padding-left: 1%;
+    outline: none;
+    border-top-left-radius: 5px;
+    background-color: var(--secondaryColor);
+    border-top-right-radius: 5px;
+    border: transparent;
+    border-bottom: 1px solid var(--fontColorMain);
+}
+
+#form-DBAT > textarea {
+    width: 200px;
+}
+#form-DBAT-footer {
+    width: 100%;    
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+}
+#form-DBAT-footer > button:nth-child(1) {
+    background-color: var(--colorSuccess);
+    color: #fff;
+}
+#form-DBAT-footer > button:nth-child(2) {
+    background-color: var(--colorDanger);
+    color: #fff;
+}
+#form-DBAT-footer > button {
+    width: 20%;
+    height: 100%;
+    border: transparent;
+    border-radius: 5px;
+}
+#form-DBAT-footer > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}

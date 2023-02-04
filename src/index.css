@@ -30,8 +30,30 @@ code {
   --primaryColor: #fff;
   --secondaryColor: #f5f5f5;
   --ColorGray: #656565;
+  --colorSuccess:#28a745;
+  --colorDanger: #dc3545;
+  --colorInfo:#007bff;
+
 
   --fontVeryTinSmall: 10px;
   --fontVerySmall: 12px;
 }
 
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance:none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}

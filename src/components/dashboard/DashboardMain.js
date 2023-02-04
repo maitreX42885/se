@@ -1,7 +1,45 @@
-import React from 'react'
+import { collection, onSnapshot } from 'firebase/firestore'
+import React, { useContext, useState } from 'react'
 import { FiArrowRight } from 'react-icons/fi'
-
+import Firebase from '../../back-end/FirebaseC'
+import { PagecursorContext } from './ValDashboard'
+import './DashboardMain.css'
 function DashboardMain() {
+
+  const fb = new Firebase()
+	const db = fb.init_firebase()
+  const {pageCursor, PageCursorAction} = useContext(PagecursorContext)
+
+  onSnapshot(collection(db, 'users'), async (doc)=>{
+    const allUser = []
+    
+    await doc.forEach(value => {
+        allUser.push(value.data())
+    })
+    
+    createTableUser(allUser)
+  })
+
+  function createTableUser(data) {
+    const trUser = document.querySelectorAll('#temp-user')
+    
+    if (trUser) {
+      trUser.forEach((x)=>{
+        x.remove()
+      })
+    }//
+    data.forEach((val)=>{
+      // console.log(val.name)
+      const body = document.getElementById('dashboard-content-footer-right-content')
+      const div = document.createElement('div')
+
+      div.innerHTML = val.name
+      div.id = 'temp-user'
+
+      body.append(div)
+    })
+  }
+
   return (
     <div className='wrapper-dashboard-main'>
         <div className='dashboard-content-header'>
@@ -20,7 +58,7 @@ function DashboardMain() {
                   <div className='dashboard-content-footer-left-head'>
                     <h3>อุปกรณ์</h3>
                     <div>
-                      <button type='button'>See all</button>
+                      <button type='button' onClick={()=>PageCursorAction.setPage(2)}>See all</button>
                       <FiArrowRight/>
                     </div>
                   </div>
@@ -38,18 +76,12 @@ function DashboardMain() {
                   <div className='dashboard-content-footer-right-head'>
                     <h3>สมาชิก</h3>
                       <div>
-                        <button type='button'>See all</button>
+                        <button type='button' onClick={()=>PageCursorAction.setPage(1)}>See all</button>
                         <FiArrowRight/>
                       </div>
                   </div>
-                  <div className='dashboard-content-footer-right-content'>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
-                    <div>NICE</div>
+                  <div className='dashboard-content-footer-right-content' id='dashboard-content-footer-right-content'>
+                    
                   </div>
                 </div>
               </div>

@@ -1,4 +1,82 @@
 #d-user {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+   
 }
+
+
+/* d-user-header */
+.d-user-header{
+    width: 100%;
+    height: 10%;
+}
+/* d-user-header */
+
+/* d-user-toolbar */
+
+.d-user-toolbar {
+    height: 10%;
+    width: 100%;
+    text-align: right;
+    padding-right: 5%;
+}
+.d-user-toolbar > input[type='search'] {
+    width: 25%;
+    height: 65%;
+    outline: none;
+    padding-left: 1%;
+    border-radius: 20px;
+    border: 1px solid #000;
+}
+
+/* d-user-toolbar */
+
+/* d-user-content */
+#d-user-content {
+    width: 100%;
+    height: 80%;
+    overflow: scroll;
+    margin-bottom: 5%;
+}
+table {
+    width: 100%;
+    
+}
+/* table > div {
+    border-bottom: 1px solid var(--fontColorMain);
+    width: ;
+} */
+table, th, td {
+    border: 1px solid var(--fontColorMain);
+    border-collapse: collapse;
+}
+tr {
+    
+}
+td {
+    height: 40px;
+}
+
+td > button {
+    margin-right: 5%;
+    height: 1.6rem;
+    color: #fff;
+    border-radius: 5px;
+    width: 3rem;
+    border: transparent;
+    
+}
+td > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+td > button:nth-child(1) {
+    background-color: var(--colorInfo);
+}
+td > button:nth-child(2) {
+    background-color: var(--colorDanger);
+}
+
+/* d-user-content */

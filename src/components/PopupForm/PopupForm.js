@@ -1,19 +1,24 @@
-import './DashboardAddUser.css'
+import './PopupForm.css'
 
-import React from 'react'
-import LogoAdd from './add-circle-svgrepo-com.svg'
-import Firebase from '../../back-end/FirebaseC'
-import { async } from '@firebase/util'
-function DashboardAddUser() {
+import React, { useContext, useEffect } from 'react'
+import { ValPopupContext } from './ValPopup'
+import { AiOutlineClose } from "react-icons/ai";
+import Firebase from '../../back-end/FirebaseC';
 
-  const Fb = new Firebase()
-  const db = Fb.init_firebase()
+export default function PopupForm_EditUser(props) {
+
+  const {ValPopup, ValPopupAction} = useContext(ValPopupContext)
+  const fb = new Firebase()
+  const db = fb.init_firebase()
 
 
-  const handleNumStudent = (e) => {
-    let num = e.target.value
-    num = num.substring(0, 8)
-    e.target.value = num
+  useEffect(()=>{
+    createForm()
+  }, [])
+
+  const handleClose = () => {
+    // alert(props.title)
+    ValPopupAction.setVal(0)
   }
 
   const handleTel = (e)=> {
@@ -24,94 +29,51 @@ function DashboardAddUser() {
     e.target.value = value
   }
 
+  const createForm = (x) => {
+    const wrapperHeader = document.getElementById('PFEU-form-header')
+    const wrapperFooter = document.getElementById('PFEU-form-footer')
+    const h4 = document.createElement('h4')
+    const btnSave = document.createElement('button')
+
+    h4.innerHTML = `Edit : ${props.title}`
+    wrapperHeader.append(h4)
+
+    btnSave.id = props.title
+    btnSave.innerHTML = 'บันทึก'
+    wrapperFooter.append(btnSave)
+  }
+
   const onSubmit = async (e) => {
-    e.preventDefault();
-    const form = document.getElementById('form-DAUC')
-    const p = document.getElementById('register-check')
-    const inputAdd = document.getElementById('num-add-user')
-
-    const all = []
-    for (let i of e.target) {
-        all.push(i.value)
+    
+    e.preventDefault()
+    const data = {
+      name:e.target[0].value,
+      faculty:e.target[1].value,
+      class:e.target[2].value,
+      phone:e.target[3].value,
+      email:e.target[4].value,
+      permission:e.target[5].value
     }
-    const all2 = all.slice(0, (all.length - 1))
-    // console.log(all2)
-    
-
-    const backRegister = await Fb._add_user_(db, all[0],{
-        studentNumber:all2[0],
-        name:all2[1],
-        password:all2[2],
-        email:all2[3],
-        phone:all2[4],
-        faculty:all2[5],
-        class:all2[6],
-        permission:all2[7]
-    })//ff
-
-    if (backRegister === 'success') {
-      inputAdd.style.border = 'transparent'
-      inputAdd.style.borderbottom = '1px solid #000'
-      alert('เพิ่มสมาชิกสำเร็จ')   
-      form.reset()
-    }else {
-      p.style.display = 'block'
-      
-      // inputAdd.style.backgroundColor = '#fe0000'
-      inputAdd.style.border = '1px solid #fe0000'
-      inputAdd.style.animation = 'shakeee 100ms linear';
-      setTimeout(()=>{
-        inputAdd.style.animation = undefined;
-      }, 210)
-    }
-    
-    
+    await fb._editUser_(db, props.title, data)
+    ValPopupAction.setVal(0)
   }
 
   return (
-    <div className='d-add-user'>
-      <div className='d-add-user-header'>
-        <h2>เพิ่มสมาชิก</h2>
-        <img 
-          src={LogoAdd}
-        />
-      </div>
-      <div className='d-add-user-content'>
-        <div className='wrapper-DAUC'>
-          <form id='form-DAUC' onSubmit={onSubmit}>
-            <p id='register-check'>รหัสนิสิตนี้มีบัญชีอยู่แล้ว</p>
-            <input 
-              id='num-add-user'
-              type='text'
-              placeholder='รหัสนิสิต*'
-              onChange={handleNumStudent}
-              required
-            />
-            <input 
-              type='text'
-              placeholder='ชื่อ*'
-              required
-            />
-            <input 
-              type='text'
-              placeholder='รหัสผ่าน*'
-              required
-            />
-            
-            <input 
-              type='email'
-              placeholder='อีเมล*'
-              required
-            />
-            <input 
-              type='tel'
-              placeholder='เบอร์*'
-              onChange={handleTel}
-              required
-            />
-           
-            <div className='Group-select-DAU'>
-              <select required>
+    <div className='PopupFormEditUser-container'>
+        <div className='PFEU-Form'>
+          <div className='PFEU-header'>
+            <button type='button' onClick={handleClose}><AiOutlineClose/></button>
+          </div>
+          <div className='PFEU-content'>
+            <form onSubmit={onSubmit}>
+              <div className='PFEU-form-header' id='PFEU-form-header'></div>
+              <div className='PFEU-form-content'>
+                <input
+                  type='text'
+                  placeholder='ชื่อ'
+                  required
+                />
+                <select required>
                   <option value=''>คณะ</option>
                   <option value="บัณฑิตวิทยาลัย">0 : บัณฑิตวิทยาลัย</option>
                   <option value="วิทยาลัยพลังงานทดแทนและสมาร์ตกริดเทคโนโลยี">1 : วิทยาลัยพลังงานทดแทนและสมาร์ตกริดเทคโนโลยี</option>
@@ -138,31 +100,38 @@ function DashboardAddUser() {
                   <option value="คณะบริหารธุรกิจ เศรษฐศาสตร์และการสื่อสาร">22 : คณะบริหารธุรกิจ เศรษฐศาสตร์และการสื่อสาร</option>
                   <option value="คณะสังคมศาสตร์">23 : คณะสังคมศาสตร์</option>
                   <option value="โรงเรียนสาธิตมหาวิทยาลัยนเรศวร">24 : โรงเรียนสาธิตมหาวิทยาลัยนเรศวร</option>
-              </select>
-              <select required>
-                  <option value=''>ชั้นปี</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-              </select>
-              <select required>
-                <option value=''>ระดับการใช้งาน</option>
-                <option value='ผู้ใช้'>ผู้ใช้</option>
-                <option value='ผู้ดูแล'>ผู้ดูแล</option>
-            </select>
-            </div>
-            <div className='DAU-footer'>
-              <button type='submit'>บันทึก</button>
-              <button type='button' onClick={()=>{document.getElementById('form-DAUC').reset()}}>เคลียร์</button>
-            </div>
-          </form>
+                </select>
+                <select required>
+                    <option value=''>ชั้นปี</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                </select>
+                <input
+                  type='text'
+                  placeholder='เบอร์'
+                  onChange={handleTel}
+                  required
+                />
+                <input
+                  type='email'
+                  placeholder='อีเมล'
+                  required
+                />
+                <select required>
+                  <option value="">ระดับการใช้งาน</option>
+                  <option value="ผู้ใช้">ผู้ใช้</option>
+                  <option value="ผู้ดูแล">ผู้ดูแล</option>
+                </select>
+              </div>
+              <div className='PFEU-form-footer' id='PFEU-form-footer'></div>
+            </form>
+          </div>
         </div>
-      </div>
     </div>
   )
 }
 
-export default DashboardAddUser

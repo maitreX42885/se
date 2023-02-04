@@ -1,0 +1,15 @@
+#temp-user {
+    margin: 0 5%;
+    /* border: 1px solid red; */
+    height: 45px;
+    color: #000;
+    background-color: var(--secondaryColor);
+    padding-left: 5%;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-bottom: 1.5%;
+    /* border-bottom: 1px solid var(--fontColorMain); */
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 5px;
+}
