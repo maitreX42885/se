@@ -1,0 +1,111 @@
+.popup-tool {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(0, 0, 0, 0.37);
+   
+}
+@keyframes PFEU_Appear {
+    0% {
+        border-radius: 100%;
+        opacity: 0;
+    }
+    100% {
+        border-radius: 5px;
+        opacity: 1;
+    }
+}
+
+.pt-form {
+    background-color: var(--primaryColor);
+    width: 40%;
+    height: 80%;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    animation: PFEU_Appear 150ms ease-in-out;
+}
+.pt-header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    padding-right: 5%;
+    padding-top: 2%;
+    height: 10%;
+}
+.pt-header > button {
+    background-color: transparent;
+    color: var(--fontColorMain);
+    border: transparent;
+    font-size: 1.2rem;
+    transition: all 100ms ease-in-out;
+}
+.pt-header > button:hover {
+    cursor: pointer;
+    color: #ff0000;
+}
+.pt-content {
+    height: 90%;
+}
+.pt-content-title {
+    height: 10%;
+}
+#pt-content-form {
+    display: flex;
+    flex-direction: column;
+    padding: 0 20%;
+    padding-top: 5%;
+    height: 90%;
+}
+#pt-content-form > input, #pt-content-form > textarea {
+    position: relative;
+    outline: none;
+    height: 2.5rem;
+    padding-left: 3%;
+    font-size: 1.1rem;
+    margin-bottom: 5%;
+    resize: none;
+    border: transparent;
+    background-color: var(--secondaryColor);
+}
+
+#pt-content-form > textarea {
+    height: 4.5rem;
+}
+
+#pt-content-form > input:focus ,#pt-content-form > textarea:focus{
+    border-bottom: 1px solid #000;
+    transition: border-bottom 200ms ease-in-out;
+}
+
+#pt-content-form > input:focus::-webkit-input-placeholder, #pt-content-form > textarea:focus::-webkit-input-placeholder {
+    transition: text-indent 300ms 2000ms ease-in-out;
+    text-indent: -100%;
+}
+
+.pt-content-form-footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 10%
+}
+.pt-content-form-footer > button {
+    height: 100%;
+    width: 30%;
+    border: transparent;
+    color: #fff;
+    border-radius: 5px;
+}
+.pt-content-form-footer > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+.pt-content-form-footer > button:nth-child(1) {
+    background-color: var(--colorSuccess);
+}
+.pt-content-form-footer > button:nth-child(2) {
+    background-color: var(--colorDanger);
+}

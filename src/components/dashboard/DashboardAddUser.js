@@ -9,6 +9,7 @@ function DashboardAddUser() {
   const Fb = new Firebase()
   const db = Fb.init_firebase()
 
+  
 
   const handleNumStudent = (e) => {
     let num = e.target.value
@@ -26,6 +27,8 @@ function DashboardAddUser() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    const loadingDAU = document.getElementById('loading-DAU')
+    loadingDAU.style.display = 'flex'
     const form = document.getElementById('form-DAUC')
     const p = document.getElementById('register-check')
     const inputAdd = document.getElementById('num-add-user')
@@ -64,12 +67,15 @@ function DashboardAddUser() {
         inputAdd.style.animation = undefined;
       }, 210)
     }
-    
+    loadingDAU.style.display = 'none'
     
   }
 
   return (
     <div className='d-add-user'>
+      <div className='loading-DAU' id='loading-DAU'>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
       <div className='d-add-user-header'>
         <h2>เพิ่มสมาชิก</h2>
         <img 

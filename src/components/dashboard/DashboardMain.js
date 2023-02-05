@@ -20,6 +20,47 @@ function DashboardMain() {
     createTableUser(allUser)
   })
 
+  onSnapshot(collection(db, 'tools'), async (doc)=>{
+    const allTool = []
+    
+    await doc.forEach(value => {
+        allTool.push(value.data())
+    })
+    createTableTool(allTool)
+  })
+
+  function createTableTool(data) {
+    const trUser = document.querySelectorAll('#temp-tool')
+    if (trUser) {
+      trUser.forEach((x)=>{
+        x.remove()
+      })
+    }//
+    
+    if (data.length != 0) {
+      data.forEach((val)=>{
+        // console.log(val.name)
+        const body = document.getElementById('dashboard-content-footer-left-content')
+        const img = document.createElement('img')
+        const div = document.createElement('div')
+
+        img.src = val.url
+
+        div.append(img)
+        div.id = 'temp-tool'
+        body.append(div)
+      })
+    }else {
+      const body = document.getElementById('dashboard-content-footer-left-content')
+      const div = document.createElement('div')
+
+      div.innerHTML = 'ไม่มีรายการ'
+      div.id = 'temp-tool'
+
+      body.append(div)
+    }
+  }
+
   function createTableUser(data) {
     const trUser = document.querySelectorAll('#temp-user')
     
@@ -28,16 +69,27 @@ function DashboardMain() {
         x.remove()
       })
     }//
-    data.forEach((val)=>{
-      // console.log(val.name)
+
+    if (data.length != 0) {
+      data.forEach((val)=>{
+        // console.log(val.name)
       const body = document.getElementById('dashboard-content-footer-right-content')
       const div = document.createElement('div')
 
-      div.innerHTML = val.name
+      div.innerHTML = `${val.name}  |  ปี${val.class}`
       div.id = 'temp-user'
 
       body.append(div)
-    })
+      })
+    }else {
+      const body = document.getElementById('dashboard-content-footer-right-content')
+      const div = document.createElement('div')
+
+      div.innerHTML = 'ไม่มีสมาชิก'
+      div.id = 'temp-user'
+
+      body.append(div)
+    }
   }
 
   return (
@@ -62,14 +114,8 @@ function DashboardMain() {
                       <FiArrowRight/>
                     </div>
                   </div>
-                  <div className='dashboard-content-footer-left-content'>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
-                    <div>ad</div>
+                  <div className='dashboard-content-footer-left-content' id='dashboard-content-footer-left-content'>
+                    
                   </div>
                 </div>
                 <div className='dashboard-content-footer-right'>

@@ -128,18 +128,7 @@ export default class Firebase {
             document.getElementById('num-incorrect').style.visibility = 'visible';
         }
     }
-    // async login2(db, data) {
-    //     const citiesRef = collection(db, "/users");
-    //     const q = query(citiesRef, where('password', "==", `${data[1]}`));
-    //     const querySnapshot = await getDocs(q)
-
-    //     console.log('q: ')
-    //     querySnapshot.forEach((doc) => {
-    //         // doc.data() is never undefined for query doc snapshots
-    //         console.log(doc.id, " => ", doc.data());
-    //     });
-    //     console.log('g')
-    // }
+    
 
     async getDataUser(db) {
         const all = []
@@ -155,21 +144,57 @@ export default class Firebase {
         
     }
 
-    async _deleteUser_(db, data) {
+    async _delete_(db, path, data) {
         try {
-            await deleteDoc(doc(db, "users", data))
+            await deleteDoc(doc(db, path, data))
         }catch (err) {
             console.log(err)
         } 
 
     }
     async _editUser_(db, docu, data) {
-        
         const pathRef = doc(db, 'users', docu)
         try {
             await updateDoc(pathRef, data)
         }catch (err) {
             console.log(err)
+        }
+    }
+    async _editTool_(db, docu, data) {
+        const pathRef = doc(db, 'tools', docu)
+        try {
+            await updateDoc(pathRef, data)
+        }catch (err) {
+            console.log(err)
+        }
+    }
+
+
+    async _add_tool_(db, id, data) {
+        let path_u = '/tools';
+        const check = await this.check_tool(db, id);
+        if (check === false) {
+            
+            
+            return "false"
+        }else {
+            try {
+                await setDoc(doc(db, path_u, id), data);
+            } catch (e) {
+                console.error("Error adding document: ", e);
+            }
+            return 'success'
+        }
+    }
+
+
+    async check_tool(db, id) {
+        const pathRef = await doc(db, "/tools", `${id}`)
+        const docsnap = await getDoc(pathRef)
+        if (docsnap.exists()) {
+            return false
+        }else {
+            return true
         }
     }
 }

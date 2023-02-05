@@ -1,9 +1,10 @@
 import './PopupForm.css'
 
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ValPopupContext } from './ValPopup'
 import { AiOutlineClose } from "react-icons/ai";
 import Firebase from '../../back-end/FirebaseC';
+import { documentId } from 'firebase/firestore';
 
 export default function PopupForm_EditUser(props) {
 
@@ -11,9 +12,13 @@ export default function PopupForm_EditUser(props) {
   const fb = new Firebase()
   const db = fb.init_firebase()
 
-
+  const All = props.title
+ 
   useEffect(()=>{
     createForm()
+    document.getElementById('PF-name').value = All[0].name
+    document.getElementById('PF-email').value = All[0].email
+    document.getElementById('PF-tel').value = All[0].phone
   }, [])
 
   const handleClose = () => {
@@ -30,22 +35,24 @@ export default function PopupForm_EditUser(props) {
   }
 
   const createForm = (x) => {
+    
     const wrapperHeader = document.getElementById('PFEU-form-header')
     const wrapperFooter = document.getElementById('PFEU-form-footer')
     const h4 = document.createElement('h4')
     const btnSave = document.createElement('button')
-
-    h4.innerHTML = `Edit : ${props.title}`
+    // console.log('Props : ', All[0].name)
+    h4.innerHTML = `Edit : ${All[0].studentNumber}`
     wrapperHeader.append(h4)
 
-    btnSave.id = props.title
+    btnSave.id = All[0].studentNumber
+    
     btnSave.innerHTML = 'บันทึก'
     wrapperFooter.append(btnSave)
   }
 
   const onSubmit = async (e) => {
-    
     e.preventDefault()
+    
     const data = {
       name:e.target[0].value,
       faculty:e.target[1].value,
@@ -54,7 +61,7 @@ export default function PopupForm_EditUser(props) {
       email:e.target[4].value,
       permission:e.target[5].value
     }
-    await fb._editUser_(db, props.title, data)
+    await fb._editUser_(db, All[0].studentNumber, data)
     ValPopupAction.setVal(0)
   }
 
@@ -69,6 +76,7 @@ export default function PopupForm_EditUser(props) {
               <div className='PFEU-form-header' id='PFEU-form-header'></div>
               <div className='PFEU-form-content'>
                 <input
+                  id='PF-name'
                   type='text'
                   placeholder='ชื่อ'
                   required
@@ -111,12 +119,14 @@ export default function PopupForm_EditUser(props) {
                     <option>6</option>
                 </select>
                 <input
+                  id='PF-tel'
                   type='text'
                   placeholder='เบอร์'
                   onChange={handleTel}
                   required
                 />
                 <input
+                  id='PF-email'
                   type='email'
                   placeholder='อีเมล'
                   required

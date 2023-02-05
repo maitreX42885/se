@@ -1,0 +1,81 @@
+.DT-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.DT-header {
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    padding-left: 5%;
+    box-shadow: var(--shadowSmall);
+}
+
+.DT-toolbar {
+    width: 100%;
+    height: 10%;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    padding-right: 5%;
+}
+.DT-toolbar > input {
+    outline: none;
+    padding-left: 1%;
+    width: 30%;
+    height: 50%;
+    border-radius: 20px;
+    border: 1px solid var(--fontColorMain);
+}
+
+.DT-content {
+    padding-top: 1%;
+    width: 100%;
+    height: 80%;
+}
+
+#table-DT {
+    width: 100%;
+    border-collapse: collapse;
+    /* border: 1px solid var(--fontColorMain); */
+}
+th, td {
+    border: 1px solid var(--fontColorMain);
+}
+table, th, td {
+    border: 1px solid var(--fontColorMain);
+    border-collapse: collapse;
+}
+td {
+    height: 40px;
+}
+td > button {
+    margin-right: 5%;
+    height: 1.6rem;
+    color: #fff;
+    border-radius: 5px;
+    width: 3rem;
+    border: transparent;
+    
+}
+td > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+td > button:nth-child(1) {
+    background-color: var(--colorInfo);
+}
+td > button:nth-child(2) {
+    background-color: var(--colorDanger);
+}
+#btnEmpty {
+    display: none;
+}

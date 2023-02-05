@@ -16,11 +16,10 @@ function DashboardUser() {
 
   const {ValPopup, ValPopupAction} = useContext(ValPopupContext)
   const [idProps, setIdProps] = useState(0)
+  const [valUser, setValUser] = useState([])
   
   const onChangeSearch = (e)=> {
-
     const value = e.target.value
-
     allUser.forEach((nn)=>{
       // console.log(Object.keys(nn))
       if (Object.keys(nn).includes("password") ) {
@@ -47,7 +46,6 @@ function DashboardUser() {
     let num = 1
     if (x.length > 0) {
       x.forEach((v)=>{
-      
         const tr = document.createElement('tr')
         const tdNum = document.createElement('td')
         const tdName = document.createElement('td')
@@ -64,18 +62,12 @@ function DashboardUser() {
         
         tdNum.innerHTML = v.studentNumber
         tdName.innerHTML = v.name
-
         tdFaculty.innerHTML = v.faculty
-      
         tdClass.innerHTML = v.class
-  
         tdPhone.innerHTML = v.phone
-  
         tdEmail.innerHTML = v.email
-  
         tdPermission.innerHTML = v.permission
         
-  
         tdButtonDel.innerHTML = "Delete"
         tdButtonDel.value = v.studentNumber
         tdButtonDel.onclick = handleDelete
@@ -90,11 +82,8 @@ function DashboardUser() {
   
         tableUser.append(tr)
         num++
-      
       })
     }else {
-      
-      
         const tr = document.createElement('tr')
         const tdNum = document.createElement('td')
         const tdName = document.createElement('td')
@@ -104,11 +93,9 @@ function DashboardUser() {
         const tdEmail = document.createElement('td')
         const tdPermission = document.createElement('td')
         const wrapperDel = document.createElement('td')
-        const tdButtonDel = document.createElement('button')
-        const tdButtonEdit = document.createElement('button')
-  
+       
         tr.id = 'tr-user'
-        tdNum.innerHTML = 'ไม่พบ'    
+        tdNum.innerHTML = 'ไม่มีรายการ'    
         tdName.innerHTML = '#'
         tdFaculty.innerHTML = '#'
         tdClass.innerHTML = '#'
@@ -119,8 +106,6 @@ function DashboardUser() {
         tr.append(tdNum, tdName, tdFaculty, tdClass, tdPhone, tdEmail, tdPermission, wrapperDel)
   
         tableUser.append(tr)
-        
-      
     }
   }
 
@@ -148,12 +133,17 @@ function DashboardUser() {
   
   const handleEdit = (e) => {
     setIdProps(e.target.id)
+    
+    const newAllUser = allUser.filter((data)=>{
+      return Object.keys(data).some(k=>data[k].toLowerCase().includes(e.target.id.toLowerCase()))
+    })
+    setValUser(newAllUser)
     ValPopupAction.setVal(1)
   }
 
   const handleDelete = (e) => {
     if (window.confirm('ต้องการลบรายชื่อนี้?')) {
-      fb._deleteUser_(db, e.target.value)
+      fb._delete_(db, "users", e.target.value)
     }
     
   }
@@ -161,7 +151,7 @@ function DashboardUser() {
   return (
     <div id='d-user'>
       <Suspense fallback={<Loading/>}>
-        {(ValPopup===1)?(<_PopupEditUser title={idProps} />):""}
+        {(ValPopup===1)?(<_PopupEditUser title={valUser} />):""}
       </Suspense>
       <div className='d-user-header'><h1>สมาชิก</h1></div>
       <div className='d-user-toolbar'>
