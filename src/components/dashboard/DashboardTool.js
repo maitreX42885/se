@@ -41,8 +41,10 @@ function DashboardTool() {
   })
 
   function createTool(x , check) {
+    const loading = document.getElementById('loading-Tool')
     const body = document.getElementById('table-DT')
     const trTool = document.querySelectorAll('#tr-tool')
+    loading.style.display = 'flex'
     if (trTool) {
       trTool.forEach(val => {
         val.remove()
@@ -61,7 +63,7 @@ function DashboardTool() {
         const td6 = document.createElement('td')
         const btnEdit = document.createElement('button')
         const btnDelete = document.createElement('button')
-        const div = document.createElement('div')
+        
   
         td1.innerHTML = data.id
         td2.innerHTML = data.title
@@ -118,18 +120,19 @@ function DashboardTool() {
         btnDelete.innerHTML = '#'
         btnDelete.id = 'btnEmpty'
       }
-      
+
 
       td6.append(btnEdit, btnDelete)
       tr.append(td1, td2, td3, td4, td5, td6)
       body.append(tr)
       
     }
+    loading.style.display = 'none'
   }
 
   const onChange = (e)=> {
     let value = e.target.value
-
+    
     const newAllTool = allTool.filter((data)=>{
       return Object.keys(data).some(k=>data[k].toLowerCase().includes(value.toLowerCase()))
     })
@@ -161,8 +164,15 @@ function DashboardTool() {
     ValPopupAction.setVal(2)
   }
 
+  const handleDeleteAll = () => {
+    Fb.delete_in_collection_tool(db, "tools")
+  }
+
   return (
-    <div className='DT-container'> 
+    <div className='DT-container'>
+      <div className='loading-Tool' id='loading-Tool'>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div> 
       {(ValPopup===2)?(<_PopupEditTool title={idTool}/>) : ""}
       <div className='DT-header'>
         <h2>อุปกรณ์</h2>
@@ -174,6 +184,7 @@ function DashboardTool() {
           placeholder='Search...'
           onChange={onChange}
         />
+        <button type='button' onClick={handleDeleteAll}>Delete All</button>
       </div>
       <div className='DT-content'>
         <table id='table-DT'>

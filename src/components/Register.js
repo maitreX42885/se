@@ -143,7 +143,7 @@ const Register = () => {
         <div className='r-register'>
             <div className='login-link'>
                 Already a <t/>
-                <a href={'/'}>
+                <a href={'/login'}>
                     member?
                 </a>
             </div>

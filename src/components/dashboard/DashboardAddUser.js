@@ -1,9 +1,8 @@
 import './DashboardAddUser.css'
-
 import React from 'react'
 import LogoAdd from './add-circle-svgrepo-com.svg'
 import Firebase from '../../back-end/FirebaseC'
-import { async } from '@firebase/util'
+
 function DashboardAddUser() {
 
   const Fb = new Firebase()

@@ -1,0 +1,77 @@
+.menu-welcome-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+#bg-welcome {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    z-index: -1;
+    left: 0;
+    filter: brightness(40%);
+}
+
+.box1-welcome {
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50%;
+    padding: 0 20%;
+    padding-top: 5%;
+}
+.box1-welcome > p {
+    margin-top: 1%;
+    width: 100%;
+    font-size: 1rem;
+    min-width: 400px;
+}
+.box1-welcome > button {
+    margin-top: 10%;
+    width: 30%;
+    height: 50%;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: bold;
+    background-color: rgb(23, 110, 23);
+    border: transparent;
+    min-height: 50px;
+    max-height: 50px;
+    min-width: 90px;
+}
+.box1-welcome > button:hover {
+    cursor: pointer;
+    filter: brightness(90%);
+}
+
+.box2-welcome {
+    padding-top: 5%;
+    position: absolute;
+    color: #fff;
+    z-index: 1;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: grid;
+    width: 100%;
+    grid-gap: 20px;
+    height: 50%;
+    
+    padding-bottom: 3%;
+    top: 50%;
+}
+.items-welcome {
+    width: 100%;
+    height: 50%;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+.items-welcome > h3 {
+    font-size: 2rem;
+}

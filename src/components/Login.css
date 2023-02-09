@@ -401,12 +401,16 @@
     border: transparent;
     font-size: .9rem;
     outline: none;
-
+    
 }
 
-#num-login {
+ 
+
+
+#num-login::after {
     position: relative;
     /* margin-top: 30px; */
+    
 }
 
 #hr-login {

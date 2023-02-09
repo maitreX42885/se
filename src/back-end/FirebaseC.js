@@ -1,8 +1,8 @@
 import { async } from '@firebase/util';
 import { initializeApp } from 'firebase/app'
-import { getFirestore, collection, addDoc, setDoc, doc, query, where, getDocs, getDoc, onSnapshot, deleteDoc, updateDoc} from "firebase/firestore";
+import { getFirestore, collection, addDoc, setDoc, doc, where, getDocs, getDoc, onSnapshot, deleteDoc, updateDoc} from "firebase/firestore";
 import bcrypt from 'bcryptjs';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { COMPARISON_BINARY_OPERATORS } from '@babel/types';
 
@@ -94,10 +94,8 @@ export default class Firebase {
         }
     }
     async login(db, data) {
-
-        
-
         const loading = document.getElementById('loading-wrapper');
+       
         loading.style.display = 'block';
         // const check = await this.check_account(db, data[0])
         const pathRef = await doc(db, "/users", `${data[0]}`);
@@ -110,14 +108,13 @@ export default class Firebase {
             // console.log(docsnap.data())
             const valueUser = docsnap.data();
             let check2 = bcrypt.compareSync(data[1], valueUser.password); 
-            
             // console.log(valueUser.password)
             if (check2) {
                 
                 loading.style.display = 'none';
                 document.getElementById('password-incorrect').style.visibility = 'hidden';
                 
-                // alert('welcome');
+                return true
             }else {
                 loading.style.display = 'none';
                 document.getElementById('password-incorrect').style.visibility = 'visible';
@@ -196,5 +193,21 @@ export default class Firebase {
         }else {
             return true
         }
+    }
+
+    async delete_in_collection_user(db, collectionName) {
+        const qSnap = await getDocs(collection(db, collectionName))
+        qSnap.forEach(data => {
+                deleteDoc(doc(db, collectionName, data.id))
+            }   
+        )
+    }
+
+    async delete_in_collection_tool(db, collectionName) {
+        const qSnap = await getDocs(collection(db, collectionName))
+        qSnap.forEach(data => {
+                deleteDoc(doc(db, collectionName, data.id))
+            }   
+        )
     }
 }

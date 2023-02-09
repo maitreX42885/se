@@ -45,7 +45,8 @@ function DashboardMain() {
         const div = document.createElement('div')
 
         img.src = val.url
-
+        img.alt = "mini-img-tool"
+        
         div.append(img)
         div.id = 'temp-tool'
         body.append(div)

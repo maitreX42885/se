@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     function setSession(value) {
         setCurrentUser(value)
+        
     };
 
     const setAuth = {

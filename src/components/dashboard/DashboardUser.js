@@ -14,6 +14,8 @@ function DashboardUser() {
   const fb = new Firebase()
 	const db = fb.init_firebase()
 
+ 
+
   const {ValPopup, ValPopupAction} = useContext(ValPopupContext)
   const [idProps, setIdProps] = useState(0)
   const [valUser, setValUser] = useState([])
@@ -30,20 +32,23 @@ function DashboardUser() {
     const newAllUser = allUser.filter((data)=>{
       return Object.keys(data).some(k=>data[k].toLowerCase().includes(value.toLowerCase()))
     })
+    
     createTable(newAllUser)
     
   }
 
   const createTable = (x)=>{
+    const loading = document.getElementById('loading-User')
     const tableUser = document.getElementById('table-user-content')
     const trUser = document.querySelectorAll('#tr-user')
+    loading.style.display = 'flex'
     if (trUser) {
       trUser.forEach((x)=>{
         x.remove()
       })
     }//
 
-    let num = 1
+    
     if (x.length > 0) {
       x.forEach((v)=>{
         const tr = document.createElement('tr')
@@ -81,7 +86,7 @@ function DashboardUser() {
         tr.append(tdNum, tdName, tdFaculty, tdClass, tdPhone, tdEmail, tdPermission, wrapperDel)
   
         tableUser.append(tr)
-        num++
+        
       })
     }else {
         const tr = document.createElement('tr')
@@ -107,6 +112,7 @@ function DashboardUser() {
   
         tableUser.append(tr)
     }
+    loading.style.display = 'none'
   }
 
   
@@ -122,14 +128,17 @@ function DashboardUser() {
     await doc.forEach(value => {
         allUser.push(value.data())
     })
+    
     createTable(allUser)
   })
 
   
     
-  // const handleGetData = async () => {
-  //   createTable()
-  // }
+  const handleDeleteAll = () => {
+    if (window.confirm("คุณต้องการลบรายชื่อทั้งหมด?")) {
+      fb.delete_in_collection_user(db, "users")
+    }
+  }
   
   const handleEdit = (e) => {
     setIdProps(e.target.id)
@@ -150,13 +159,16 @@ function DashboardUser() {
 
   return (
     <div id='d-user'>
+      <div className='loading-User' id='loading-User'>
+        <div class="lds-ring"><div></div><div></div><div></div><div></div></div>
+      </div>
       <Suspense fallback={<Loading/>}>
         {(ValPopup===1)?(<_PopupEditUser title={valUser} />):""}
       </Suspense>
       <div className='d-user-header'><h1>สมาชิก</h1></div>
       <div className='d-user-toolbar'>
         <input type='search' placeholder='Search...' onChange={onChangeSearch}/>
-        {/* <button type='button' >Delete All</button> */}
+        <button type='button' id='deleteAll' onClick={handleDeleteAll}>Delete All</button>
       </div>
       <div id='d-user-content'>
         <table id='table-user-content'>
