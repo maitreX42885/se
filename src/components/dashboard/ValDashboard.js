@@ -8,6 +8,7 @@ export const PageCursorProvider = ({ children }) => {
 
     function setPage(value) {
         setPageCursor(value)
+        
     };
 
     const setPageC = {

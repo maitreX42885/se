@@ -78,19 +78,15 @@ const Login = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-
-        // console.log("1 : ", currentUser)
-        
-        // console.log("2 : ", currentUser)
         
         const all = []
         for (let i of e.target) {
-            currentUserAction.setSession(true)
             all.push(i.value)
         }
         
         const back = await Fb.login(db, [all[0], all[1]])
         if (back) {
+            currentUserAction.setSession(back)
             navigate('/')
         }
     }

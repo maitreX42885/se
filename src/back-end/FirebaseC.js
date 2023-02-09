@@ -105,7 +105,7 @@ export default class Firebase {
         if (docsnap.exists()) {
             loading.style.display = 'block';
             document.getElementById('num-incorrect').style.visibility = 'hidden';
-            // console.log(docsnap.data())
+           
             const valueUser = docsnap.data();
             let check2 = bcrypt.compareSync(data[1], valueUser.password); 
             // console.log(valueUser.password)
@@ -114,7 +114,7 @@ export default class Firebase {
                 loading.style.display = 'none';
                 document.getElementById('password-incorrect').style.visibility = 'hidden';
                 
-                return true
+                return docsnap.data().permission
             }else {
                 loading.style.display = 'none';
                 document.getElementById('password-incorrect').style.visibility = 'visible';

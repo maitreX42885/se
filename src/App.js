@@ -18,7 +18,7 @@ function App() {
           <ValPopupProvider>
             <HeaderProvider>
               <Routes>
-                <Route path='/' element={<MenuIndex />}/>
+                <Route path='/' element={<MenuIndex />} />
                 <Route path='/login' element={<Login />}/>
                 <Route path='/register' element={<Register />}/>
                 <Route path='/dashboard' element={<DashBoard />}/>

@@ -141,7 +141,7 @@
 }
 .btn-mobile-content > button {
     width: 7rem;
-    margin-bottom: 12%;
+    margin-bottom: auto;
     height: 20%;
     margin-right: 2%;
     border: 1px solid var(--fontColorMain);
@@ -200,7 +200,7 @@
 }
 .btn-mobile-content-auth > button {
     width: 7rem;
-    margin-bottom: 12%;
+    margin-bottom: auto;
     height: 15%;
     margin-right: 2%;
     border: 1px solid var(--fontColorMain);

@@ -4,11 +4,11 @@ import './Dashboard.css'
 import { BiArrowBack, BiBox, BiHistory, BiHomeAlt, BiLogOut, BiUser, BiUserPlus } from "react-icons/bi";
 import { FiArrowRight, FiBox, FiMoon, FiSun } from "react-icons/fi";
 import { FaCoins, IconName } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import Loading from '../Loading'
 import { PagecursorContext } from './ValDashboard';
 import Firebase from '../../back-end/FirebaseC';
-import { onSnapshot } from 'firebase/firestore';
+
 
 
 const DashboardUser = React.lazy(()=> import('./DashboardUser'));
@@ -26,30 +26,38 @@ function DashBoard() {
 	const fb = new Firebase()
 	const db = fb.init_firebase()
 
-  
-
-
 	const {PageCursor, PageCursorAction} = useContext(PagecursorContext)
 
 	const [btnNightMode, setBtnNightMode] = useState('')
-	const navigate = useNavigate();
+	const nevigate = useNavigate();
   const {currentUser, currentUserAction} = useContext(AuthContext)
 
 
 
 	useEffect(()=>{
-        if (!localStorage.getItem('theme')) {
-            localStorage.setItem('theme', 'false')
+    PageCursorAction.setPage(0)
+    if (!localStorage.getItem('theme')) {
+        localStorage.setItem('theme', 'false')
+        setBtnNightMode('false')
+    }else {
+        if (localStorage.getItem('theme') === 'true') {
             setBtnNightMode('false')
         }else {
-            if (localStorage.getItem('theme') === 'true') {
-                setBtnNightMode('false')
-            }else {
-                setBtnNightMode('true')
-            }
+            setBtnNightMode('true')
         }
-        
-    }, [])
+    }
+    if (currentUser == null) {
+      alert("กรุณาเข้าสู่ระบบให้เรียบร้อย")
+      nevigate('/')
+    }
+    if (currentUser == "ผู้ใช้") {
+      alert("คุณไม่ได้รับอนุญาตให้ใช้งานในส่วนนี้")
+      nevigate('/')
+    }else {
+
+    }
+
+  }, [])
 
   
 
@@ -83,6 +91,8 @@ function DashBoard() {
     // div.style.color = '#fff
     PageCursorAction.setPage(num)
   }
+
+  
 
   return (
     <div>
@@ -122,7 +132,7 @@ function DashBoard() {
               : (PageCursor===0) ? (<DashboardMain />) 
               : (PageCursor===2) ? (<DashboardTool />) 
               : (PageCursor===3) ? (<DashboardMoney />) 
-              : (PageCursor===5) ? (navigate('/')) 
+              : (PageCursor===5) ? (<Navigate to="/"/>) 
               : (PageCursor===6) ? (<DashboardAddUser />) 
               : (PageCursor===7) ? (<DashboardAddTool />)
               : (PageCursor===8) ? (<DashboardLogTool />)

@@ -4,7 +4,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { HeaderContext } from './checkBtnHeader';
 import { GrClose } from "react-icons/gr";
 import { AuthContext } from '../Auth';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 
 function MenuHeader() {
@@ -14,6 +14,7 @@ function MenuHeader() {
   const { currentUser, currentUserAction } = useContext(AuthContext)
  
   const handleStart = (e)=> {
+    
     console.log(e.target.value)
     if (e.target.value === "login") {
       nevigate('/login')
@@ -29,9 +30,9 @@ function MenuHeader() {
       headerN.style.display = 'block'
       headerAuth.style.display = 'none'
     }else {
-      console.log(currentUser)
+      
       const dboard = document.getElementById('btnDashboard')
-      if (currentUser == "admin") {
+      if (currentUser == "ผู้ดูแล") {
         headerN.style.display = 'none'
         headerAuth.style.display = 'block'
         dboard.style.display = 'block'
@@ -105,8 +106,31 @@ function MenuHeader() {
     btnD.id = 'btnDashboardMobile'
     btnD.type = 'button'
     btnD.innerHTML = 'Dashboard'
+    btnD.onclick = btnToDashBoard
     body.append(btnD)
     
+  }
+
+  const btnToDashBoard = () => {
+    
+    if (currentUser != null) {
+      
+      try {
+        nevigate('/dashboard')
+      }catch (err) {
+        console.log(err)
+      }
+    }
+  }
+
+  const btnToHome2 = () => {
+    if (currentUser != null) {
+      try {
+        nevigate('/')
+      }catch (err) {
+        console.log(err)
+      }
+    }
   }
 
   return (
@@ -136,9 +160,9 @@ function MenuHeader() {
           <div className='wrapper-menu-auth' id='wrapper-menu-auth'>
 
             <div className='menu-other-auth' id='menu-other-auth'>
-              <button type='button' >Home</button>
-              <button type='button' >About</button>
-              <button type='button' id='btnDashboard'>Dashboard</button>
+              <button type='button' onClick={btnToHome2}>Home</button>
+              <button type='button' onclick={signOut}>About</button>
+              <button type='button' id='btnDashboard' onClick={btnToDashBoard}>Dashboard</button>
               <button type='button' onClick={signOut}>Sign Out</button>
             </div>
             <div className='menu-mobile-auth'>
@@ -146,7 +170,7 @@ function MenuHeader() {
                 {(btnHeaderMobile == 1) ? (<GrClose/>) : (<GiHamburgerMenu/>)}
               </div>
               <div className='btn-mobile-content-auth' id='btn-mobile-content-auth'>
-                <button type='button' >Home</button>
+                <button type='button' onClick={btnToHome2}>Home</button>
                 <button type='button' >About</button>
                 <button type='button' onClick={signOut}>Sign Out</button>
                 

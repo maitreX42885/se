@@ -155,9 +155,9 @@ function DashboardTool() {
   }
   
   const handleDelete = (e)=> {
-      if (window.confirm('ต้องการลบอุปกรณ์นี้?')) {
-        Fb._delete_(db, "tools", e.target.id)
-      }
+    if (window.confirm('ต้องการลบอุปกรณ์นี้?')) {
+      Fb._delete_(db, "tools", e.target.id)
+    }
   }
   const handleEdit = (e) => {
     setIdTool(e.target.id)
@@ -165,7 +165,10 @@ function DashboardTool() {
   }
 
   const handleDeleteAll = () => {
-    Fb.delete_in_collection_tool(db, "tools")
+    
+    if (window.confirm('ต้องการลบอุปกรณ์ทั้งหมดนี้?')) {
+      Fb.delete_in_collection_tool(db, "tools")
+    }
   }
 
   return (
